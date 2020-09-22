@@ -3,14 +3,62 @@
     <head>
         <meta charset="utf-8">
         <title>Joseph Filla Lab 4</title>
-        <link href="style.css" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
     </head>
     <body>
     <div class='container'>
+        <h1>Joseph Filla's lab 4</h1>
+        <form>
+            <ul class='flex-outer'>
+                <li>
+                    <label for='fname'>First Name</label>
+                    <input type='text' name='firstname' id='fname' maxlength="140">
+                </li>
+                <li>
+                    <label for='lname'>Last Name</label>
+                    <input type='text' name='lastname' id='lname' maxlength="140">
+                </li>
+                <li>
+                    <label for='email'>Email</label>
+                    <input type='email' name='email' id='email'>
+                </li>
+                <li>
+                    <label for='telephone'>Phone</label>
+                    <input type='tel' name='Phone' id='telephone'>
+                </li> 
+                <li>
+                    <label for='texta'>Text Area</label>
+                    <textarea rows='5' cols='33' id='texta' name='message'></textarea>
+                </li>
+                <li>
+                    <p>Age</p>
+                    <ul class='flex-inner'>
+                        <li>
+                            <input type="checkbox" id="eighteen-to-thirtyfive">
+                            <label for="eighteen-to-thirtyfive">18-35</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="thirtyfive-to-fifty">
+                            <label for="thirtyfive-to-fifty">35-50</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="fifty-to-sixtyfive">
+                            <label for="fifty-to-sixtyfive">50-65</label>
+                        </li>
+                    </ul>
+
+                </li>           
+                <li>
+                    <button type="submit">Submit</button>
+                </li>
+            </ul>
 
 
 
-        
+        </form>
+
+
+
     </div>
 
 
