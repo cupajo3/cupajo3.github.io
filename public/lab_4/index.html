@@ -8,7 +8,7 @@
     <body>
     <div class='container'>
         <h1>Joseph Filla's lab 4</h1>
-        <form>
+        <form action="/api" method="post">
             <ul class='flex-outer'>
                 <li>
                     <label for='fname'>First Name</label>
@@ -24,7 +24,7 @@
                 </li>
                 <li>
                     <label for='telephone'>Phone</label>
-                    <input type='tel' name='Phone' id='telephone'>
+                    <input type='tel' name='phone' id='telephone'>
                 </li> 
                 <li>
                     <label for='texta'>Text Area</label>
@@ -34,22 +34,22 @@
                     <p>Age</p>
                     <ul class='flex-inner'>
                         <li>
-                            <input type="checkbox" id="eighteen-to-thirtyfive">
                             <label for="eighteen-to-thirtyfive">18-35</label>
+                            <input type="checkbox" id="eighteen-to-thirtyfive" name='eighteen-thirtyfive'>
                         </li>
                         <li>
-                            <input type="checkbox" id="thirtyfive-to-fifty">
                             <label for="thirtyfive-to-fifty">35-50</label>
+                            <input type="checkbox" id="thirtyfive-to-fifty" name='thirtyfive-fifty'>
                         </li>
                         <li>
-                            <input type="checkbox" id="fifty-to-sixtyfive">
                             <label for="fifty-to-sixtyfive">50-65</label>
+                            <input type="checkbox" id="fifty-to-sixtyfive" name='fifty-sixtyfive'>
                         </li>
                     </ul>
 
                 </li>           
                 <li>
-                    <button type="submit">Submit</button>
+                    <button type="submit" name='button'>Submit</button>
                 </li>
             </ul>
 
