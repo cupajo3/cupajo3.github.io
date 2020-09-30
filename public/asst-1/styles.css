@@ -1,3 +1,9 @@
+
+body{
+    background-color: #A89400;
+    font-family: 'Peddana', serif;
+}
+
 .header{
     background-color:#2E0BE5;
     color:#E6C02E;
@@ -7,6 +13,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
+    padding: 15px;
 }
 .wrapper{
     display: flex;
@@ -19,5 +26,16 @@
     flex-direction: row wrap;
     justify-content: space-between;
     max-width: 960px;
+    align-items: flex-start;
 }
 
+.column1 {
+    margin-right: 15px;
+}
+
+.column1 > img{
+    border-radius: 4px;
+    border-width: 1px;
+    border-style: solid;
+    width: 150px;
+}
