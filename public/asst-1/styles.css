@@ -1,6 +1,6 @@
 
 body{
-    background-color: #A89400;
+    background-color: #A8940050;
     font-family: 'Peddana', serif;
 }
 
@@ -31,6 +31,7 @@ body{
 
 .column1 {
     margin-right: 15px;
+    flex: 0 1 auto;
 }
 
 .column1 > img{
@@ -39,3 +40,27 @@ body{
     border-style: solid;
     width: 150px;
 }
+
+.column1 > p{
+    background-color: #DED9DA;
+}
+
+.column2 {
+    background-color: #DED9DA;
+}
+
+@media screen and (max-width: 1000px) {
+
+    .container{
+        justify-content: center;
+    }
+
+    .column1{
+        flex: 1 0 auto;
+        margin-right: 0px;
+    }
+
+
+
+}
+
