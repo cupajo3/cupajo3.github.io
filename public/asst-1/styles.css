@@ -74,5 +74,9 @@ body{
         flex: 1 0 auto;
         margin-right: 0px;
     }
+
+    .column1 > p{
+        margin: 15px;
+    }
 }
 
