@@ -59,6 +59,12 @@ body{
 .column2 {
     background-color: #DED9DA;
     margin: 15px;
+    display: block;
+}
+
+.column2 > p > ol{
+    margin: 0px;
+    padding: 0px;
 }
 
 @media screen and (max-width: 1000px) {
