@@ -73,6 +73,7 @@ body{
         flex-wrap: wrap;
         flex: 1 0 auto;
         margin-right: 0px;
+        justify-content: space-evenly;
     }
 
     .column1 > p{
