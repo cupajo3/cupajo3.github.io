@@ -62,7 +62,7 @@ body{
     display: block;
 }
 
-.column2 > p > ol{
+.column2 > p > ol > ul{
     margin: 0px;
     padding: 0px;
 }
