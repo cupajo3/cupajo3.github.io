@@ -2,12 +2,12 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Joseph Filla Lab 4</title>
+        <title class='title_head'>Joseph Filla Lab 4</title>
         <link href="styles.css" rel="stylesheet">
     </head>
     <body>
     <div class='container'>
-        <h1>Joseph Filla's lab 4</h1>
+        <h1 class='front_head'>Joseph Filla's lab 4</h1>
         <form action="/api" method="post">
             <ul class='flex-outer'>
                 <li>
@@ -31,7 +31,7 @@
                     <textarea rows='5' cols='33' id='texta' name='message'></textarea>
                 </li>
                 <li>
-                    <p>Age</p>
+                    <p class='a_name'>Age</p>
                     <ul class='flex-inner'>
                         <li>
                             <label class='checkbox-list-label' for="eighteen-to-thirtyfive">18-35</label>
@@ -69,6 +69,18 @@
      .then((response) => response.text())
      .then((response) => {
           console.log(response);
+          const t_head = document.querySelector('.title_head')
+          t_head.innerHTML = response;
+          const h_head = document.querySelector('.front_head')
+          h_head.innerHTML = response;
+          document.body.style.backgroundColor = 'yellow';
+          const f_out = document.querySelector('.flex-outer')
+          f_out.style.margin = '0 auto';
+          const age = document.querySelector('.a_name')
+          age.innerHTML = 'Fruits'
+          const fruit_array = ['apple', 'banana', 'orange'];
+          const ages = document.querySelectorAll('.checkbox-list-label')
+          ages.forEach(element => ages.innerHTML = element);
      })
     }   
     
