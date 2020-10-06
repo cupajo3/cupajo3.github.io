@@ -80,7 +80,11 @@
           age.innerHTML = 'Fruits'
           const fruit_array = ['apple', 'banana', 'orange'];
           const ages = document.querySelectorAll('.checkbox-list-label')
-          ages.forEach(element => ages.innerHTML = element);
+          for (let index = 0; index < ages.length; ++index) {
+            for (let j = 0; j < fruit_array.length; ++j){
+                let ages[index].innerHTML = fruit_array[j]
+            }
+        }
      })
     }   
     
