@@ -17,6 +17,13 @@ function sortFunction(a, b, key) {
   return 0;
 }
 
+//Taken from MDN Math random docs
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive 
+}
+
 document.body.addEventListener('submit', async (e) => {
   e.preventDefault(); // this stops whatever the browser wanted to do itself.
   const form = $(e.target).serializeArray(); // here we're using jQuery to serialize the form
@@ -29,7 +36,14 @@ document.body.addEventListener('submit', async (e) => {
   })
     .then((fromServer) => fromServer.json())
     .then((fromServer) => {
-      // You're going to do your lab work in here. Replace this comment.
+      const countryArr = range(10);
+      const countryWithName = countryArr.map(blank => {
+        const number = getRandomIntInclusive(0, 243);
+        return fromServer[number];
+      });
+      const sortedList = countryWithName.sort((a, b) => sortFunction(b, a, 'name'));
+      const ul = 
+      console.log(sortedList);
       console.log('fromServer', fromServer);
     })
     .catch((err) => console.log(err));
