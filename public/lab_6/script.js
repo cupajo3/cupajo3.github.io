@@ -8,10 +8,10 @@ function range(int) {
   return arr;
 }
 
-function sortFunction(a, b, key) {
-  if (a[key] < b[key]) {
+function sortFunction(org, comparison, key) {
+  if (org[key] < comparison[key]) {
     return -1;
-  } if (a[key] > b[key]) {
+  } if (org[key] > comparison[key]) {
     return 1;
   }
   return 0;
@@ -27,6 +27,7 @@ function getRandomIntInclusive(min, max) {
 document.body.addEventListener('submit', async (e) => {
   e.preventDefault(); // this stops whatever the browser wanted to do itself.
   const form = $(e.target).serializeArray(); // here we're using jQuery to serialize the form
+  // set fave to yes
   fetch('/api', {
     method: 'POST',
     headers: {
@@ -35,27 +36,14 @@ document.body.addEventListener('submit', async (e) => {
     body: JSON.stringify(form)
   })
     .then((fromServer) => fromServer.json())
-    .then((fromServer) => {
-      if (document.querySelector('.flex-inner')) {
-        document.querySelector('.flex-inner').remove();
-      }
-      const countryArr = range(10);
-      const countryWithName = countryArr.map(() => {
-        const number = getRandomIntInclusive(0, 243);
-        return fromServer[number];
-      });
-
-      const sortedList = countryWithName.sort((a, b) => sortFunction(b, a, 'name'));
-      const ol = document.createElement('ol');
-      ol.className = 'flex-inner';
-      $('form').prepend(ol);
-
-      sortedList.forEach((el) => {
-        const li = document.createElement('li');
-        $(li).append(`<input type="checkbox" value=${el.code} id=${el.code} />`);
-        $(li).append(`<label for=${el.code}>${el.name}</label>`);
-        $(ol).append(li);
-      });
+    .then((jsonFromServer) => {
+      // You're going to do your lab work in here. Replace this comment.
+      
+      console.log('jsonFromServer', jsonFromServer);
+      const reverseList = newArr2.sort((a, b) => sortFunction(b, a, 'name'));
+    })
+    .catch((err) => {
+      console.log(err)
+      // set fave to no
     });
-    // .catch((err) => console.log(err));
 });
