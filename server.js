@@ -4,6 +4,9 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import fetch from 'node-fetch';
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
 
 dotenv.config();
 
@@ -38,3 +41,27 @@ app.route('/api')
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`);
 });
+
+const sqlite3 = require('sqlite3').verbose();
+const DB_PATH = '/tmp/database.db';
+
+const DB = new sqlite3.Database(DB_PATH, function(err){
+  if (err) {
+      console.log(err)
+      return
+  }
+  console.log('Connected to ' + DB_PATH + ' database.')
+});
+
+DB.exec('CREATE TABLE IF NOT EXISTS food (name, category, inspection_date, inspection_results, city, state, zip, owner, type)');
+
+app.route('/sql')
+  .get((req, res) => {
+    console.log('GET request detected');
+    res.send(`Lab 5 for ${process.env.NAME}`);
+  })
+  .post(async (req, res) => {
+    console.log('POST request detected');
+    console.log('Form data in res.body', req.body);
+    console.log('data from fetch', json);
+  });
