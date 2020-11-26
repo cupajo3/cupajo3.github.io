@@ -4,6 +4,8 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import fetch from 'node-fetch';
+import { open } from 'sqlite';
+import sqlite3 from 'sqlite3';
 import { createRequire } from 'module';
 
 const require = createRequire(import.meta.url);
@@ -26,45 +28,59 @@ app.use((req, res, next) => {
 app.route('/api')
   .get(async (req, res) => {
     console.log('GET request detected');
-    const data = await fetch('https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json');
-    const json = await data.json();
-    console.log('data from fetch', json);
-    res.json(json);
   })
   .post(async (req, res) => {
     console.log('POST request detected');
     console.log('Form data in res.body', req.body);
-
-    const data = await fetch('https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json');
-    const json = await data.json();
-    console.log('data from fetch', json);
-    res.json(json);
   });
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`);
 });
 
-const sqlite3 = require('sqlite3').verbose();
-const DB_PATH = '/tmp/database.db';
+const dbSettings = {
+  filename: './tmp/database.db',
+  driver: sqlite3.Database
+};
 
-const DB = new sqlite3.Database(DB_PATH, function(err){
-  if (err) {
-      console.log(err)
-      return
+
+async function dataFetch() {
+  const url = "https://data.princegeorgescountymd.gov/resource/umjn-t2iz.json";
+  const response = await fetch(url);
+
+  return response.json();
+}
+
+async function insertIntoDB(data) {
+  try {
+    const restaurant_name = data.name;
+    const category = data.category;
+
+    await db.exec(`INSERT INTO restaurants (restaurant_name, category) VALUES ("${restaurant_name}", "${category}")`);
+    console.log(`${restaurant_name} and ${category} inserted`);
+  } catch (e) {
+    console.log('Error on insertion');
+    console.log(e);
   }
-  console.log('Connected to ' + DB_PATH + ' database.')
-});
+}
 
-DB.exec('CREATE TABLE IF NOT EXISTS food (name, category, inspection_date, inspection_results, city, state, zip, owner, type)');
+async function databaseInitialize(dbSettings) {
+  try {
+    const db = await open(dbSettings);
+    await db.exec(`CREATE TABLE IF NOT EXISTS restaurants (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      restaurant_name TEXT,
+      category TEXT)
+      `);
+    const data = await dataFetch();
+    data.forEach((entry) => { insertIntoDB(entry) });
 
-app.route('/sql')
-  .get((req, res) => {
-    console.log('GET request detected');
-    res.send(`Lab 5 for ${process.env.NAME}`);
-  })
-  .post(async (req, res) => {
-    console.log('POST request detected');
-    console.log('Form data in res.body', req.body);
-    console.log('data from fetch', json);
-  });
+    const test = await db.get("SELECT * FROM restaurants");
+    console.log(test);
+    console.log("Success");
+  } catch (e) {
+    console.log("Error loading Database");
+  }
+}
+
+//databaseInitialize(dbSettings);
